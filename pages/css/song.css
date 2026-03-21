@@ -32,7 +32,7 @@
   border-radius: 20px;
   background: var(--accent-dim);
   color: var(--accent);
-  border: 1px solid rgba(200,168,75,0.25);
+  border: 1px solid rgba(209,180,198,0.45);
 }
 .song-hint { font-size: 0.7rem; color: var(--text3); margin-top: 4px; }
 
@@ -80,7 +80,7 @@
 }
 .chord-name.has-chord          { color: var(--teal); cursor: pointer; }
 .chord-name.has-chord:hover    { background: var(--teal-dim); }
-.chord-name.has-chord.active   { color: #1d7a6e; background: rgba(42,157,143,0.2); }
+.chord-name.has-chord.active   { color: #6b5a8a; background: rgba(203,196,214,0.35); }
 .lyric-word { font-family: var(--font-body); font-size: 1rem; line-height: 1.7; color: var(--text); white-space: pre; }
 
 /* Side panel */
