@@ -1,12 +1,5 @@
 // ─────────────────────────────────────────────
 //  js/data.js  —  shared data for all pages
-//
-//  Every HTML page loads this with:
-//    <script src="../js/data.js"></script>
-//    (or  <script src="js/data.js"></script>  from root)
-//
-//  TO ADD A NEW SONG: copy the object below and fill in the fields.
-//  WHEN API IS READY: replace this file's contents with a fetch() call.
 // ─────────────────────────────────────────────
 
 const SONGS = [
@@ -17,6 +10,100 @@ const SONGS = [
     key: "C Major",
     youtubeId: "yCjJyiqpAuU",
     chords: ["C", "F", "G"],
+
+    // ── Sheet music data for VexFlow ──────────────────────────────
+    // Each entry in measures[] is one bar.
+    // Each note: { key, dur, lyric, chord? }
+    //   key:   VexFlow pitch — "c/4" = middle C
+    //   dur:   "q" quarter, "h" half, "w" whole
+    //   lyric: syllable shown BELOW the staff
+    //   chord: (optional) chord name shown ABOVE the staff at this note
+    // ─────────────────────────────────────────────────────────────
+    sheetMusic: {
+      timeSignature: "4/4",
+      clef: "treble",
+      measures: [
+        // Bar 1 — "Twin-kle twin-kle"  C
+        [
+          { key:"c/4", dur:"q", lyric:"Twin-", chord:"C" },
+          { key:"c/4", dur:"q", lyric:"kle"              },
+          { key:"g/4", dur:"q", lyric:"twin-"            },
+          { key:"g/4", dur:"q", lyric:"kle"              },
+        ],
+        // Bar 2 — "lit-tle star,"  F → C
+        [
+          { key:"a/4", dur:"q", lyric:"lit-",  chord:"F" },
+          { key:"a/4", dur:"q", lyric:"tle"              },
+          { key:"g/4", dur:"h", lyric:"star,", chord:"C" },
+        ],
+        // Bar 3 — "How I won-der"  F
+        [
+          { key:"f/4", dur:"q", lyric:"How",   chord:"F" },
+          { key:"f/4", dur:"q", lyric:"I"                },
+          { key:"e/4", dur:"q", lyric:"won-"             },
+          { key:"e/4", dur:"q", lyric:"der"              },
+        ],
+        // Bar 4 — "what you are!"  G → C
+        [
+          { key:"d/4", dur:"q", lyric:"what",  chord:"G" },
+          { key:"d/4", dur:"q", lyric:"you"              },
+          { key:"c/4", dur:"h", lyric:"are!",  chord:"C" },
+        ],
+        // Bar 5 — "Up a-bove the"  C → F
+        [
+          { key:"g/4", dur:"q", lyric:"Up",    chord:"C" },
+          { key:"g/4", dur:"q", lyric:"a-"               },
+          { key:"f/4", dur:"q", lyric:"bove",  chord:"F" },
+          { key:"f/4", dur:"q", lyric:"the"              },
+        ],
+        // Bar 6 — "world so high,"  C → G
+        [
+          { key:"e/4", dur:"q", lyric:"world", chord:"C" },
+          { key:"e/4", dur:"q", lyric:"so"               },
+          { key:"d/4", dur:"h", lyric:"high,", chord:"G" },
+        ],
+        // Bar 7 — "Like a dia-mond"  C → F
+        [
+          { key:"g/4", dur:"q", lyric:"Like",  chord:"C" },
+          { key:"g/4", dur:"q", lyric:"a"                },
+          { key:"f/4", dur:"q", lyric:"dia-",  chord:"F" },
+          { key:"f/4", dur:"q", lyric:"mond"             },
+        ],
+        // Bar 8 — "in the sky."  C → G
+        [
+          { key:"e/4", dur:"q", lyric:"in",    chord:"C" },
+          { key:"e/4", dur:"q", lyric:"the"              },
+          { key:"d/4", dur:"h", lyric:"sky.",  chord:"G" },
+        ],
+        // Bar 9 — Chorus "Twin-kle twin-kle"  C
+        [
+          { key:"c/4", dur:"q", lyric:"Twin-", chord:"C" },
+          { key:"c/4", dur:"q", lyric:"kle"              },
+          { key:"g/4", dur:"q", lyric:"twin-"            },
+          { key:"g/4", dur:"q", lyric:"kle"              },
+        ],
+        // Bar 10 — "lit-tle star,"  F → C
+        [
+          { key:"a/4", dur:"q", lyric:"lit-",  chord:"F" },
+          { key:"a/4", dur:"q", lyric:"tle"              },
+          { key:"g/4", dur:"h", lyric:"star,", chord:"C" },
+        ],
+        // Bar 11 — "How I won-der"  F
+        [
+          { key:"f/4", dur:"q", lyric:"How",   chord:"F" },
+          { key:"f/4", dur:"q", lyric:"I"                },
+          { key:"e/4", dur:"q", lyric:"won-"             },
+          { key:"e/4", dur:"q", lyric:"der"              },
+        ],
+        // Bar 12 — "what you are!"  G → C
+        [
+          { key:"d/4", dur:"q", lyric:"what",  chord:"G" },
+          { key:"d/4", dur:"q", lyric:"you"              },
+          { key:"c/4", dur:"h", lyric:"are!",  chord:"C" },
+        ],
+      ],
+    },
+
     sections: [
       { label: "Verse 1", lines: [
         [{chord:"C",word:"Twin-kle "},{chord:null,word:"twin-kle "},{chord:"F",word:"lit-tle "},{chord:"C",word:"star, "}],
@@ -38,10 +125,6 @@ const SONGS = [
   },
 ];
 
-// ─────────────────────────────────────────────
-//  Chord finger position data
-//  Also used by Pranathi's chord dictionary page.
-// ─────────────────────────────────────────────
 const CHORD_DIAGRAMS = {
   C:     { fingers:[[2,1],[3,2],[4,3]], open:[1,2], mute:[6], barre:null },
   D:     { fingers:[[1,2],[2,3],[3,2]], open:[4],   mute:[5,6], barre:null },

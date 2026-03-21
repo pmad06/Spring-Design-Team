@@ -23,35 +23,58 @@
     </ul>
   </nav>
 
-  <!-- ── SONG HEADER (Catherine owns everything below) ── -->
+  <!-- ── SONG HEADER ── -->
   <div class="song-page-header">
     <div>
-      <a href="/pages/songs.html" class="song-back">← back to search</a>
+      <a href="/pages/index.html" class="song-back">← back to search</a>
       <h1 class="song-page-title" id="sp-title">Loading…</h1>
       <p class="song-page-artist" id="sp-artist"></p>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
       <span class="song-key-badge" id="sp-key"></span>
-      <span class="song-hint">tap any chord to see fingering</span>
+
+      <!-- ── VIEW TOGGLE ── -->
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" id="btn-sheet" onclick="switchView('sheet')">
+          ♩ Sheet Music
+        </button>
+        <button class="view-toggle-btn" id="btn-lyrics" onclick="switchView('lyrics')">
+          ♫ Lyrics &amp; Chords
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- ── TWO-COLUMN LAYOUT ── -->
+  <!-- ── MAIN LAYOUT: left panel + side panel ── -->
   <div class="song-layout">
 
-    <!-- Lyrics panel -->
-    <div class="lyrics-panel" id="sp-lyrics-panel">
-      <p class="panel-eyebrow">Lyrics &amp; Chords</p>
-      <div id="sp-lyrics"></div>
+    <!-- ══ LEFT PANEL — toggles between two views ══ -->
+    <div class="left-panel">
+
+      <!-- VIEW A: Sheet Music (default, visible) -->
+      <div id="view-sheet" class="view-panel">
+        <p class="panel-eyebrow">Sheet Music</p>
+        <p class="sheet-subtitle">Notes · chords · lyrics — follow along as you play</p>
+        <div class="sheet-music-container" id="sheet-music-container">
+          <p class="sheet-loading">Rendering sheet music…</p>
+        </div>
+      </div>
+
+      <!-- VIEW B: Lyrics + Chords (hidden by default) -->
+      <div id="view-lyrics" class="view-panel" style="display:none;">
+        <p class="panel-eyebrow">Lyrics &amp; Chords</p>
+        <p class="sheet-subtitle">Tap any chord name to see its fingering</p>
+        <div id="sp-lyrics"></div>
+      </div>
+
     </div>
 
-    <!-- Side panel -->
+    <!-- ══ SIDE PANEL — always visible ══ -->
     <div class="side-panel">
 
-      <!-- YouTube embed slot (Pranathi fills this out) -->
-      <div class="yt-wrapper" id="sp-yt-wrapper">
-        <!-- filled by song.js -->
-      </div>
+      <!-- YouTube embed (Pranathi's component) -->
+      <div class="yt-wrapper" id="sp-yt-wrapper"></div>
 
       <!-- Chord viewer -->
       <div class="chord-card">
@@ -62,7 +85,7 @@
         <div class="chord-display-area" id="sp-chord-display">
           <div class="chord-empty-state">
             <div class="chord-empty-icon">♩</div>
-            <p class="chord-empty-text">Tap any chord in the lyrics to see its fingering</p>
+            <p class="chord-empty-text">Tap any chord to see its fingering</p>
           </div>
         </div>
         <div class="chord-pills" id="sp-chord-pills"></div>
@@ -71,9 +94,13 @@
     </div>
   </div>
 
+  <!-- VexFlow CDN — must be before sheetMusic.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+
   <script src="/pages/js/data.js"></script>
   <script src="/pages/js/chordDiagram.js"></script>
   <script src="/pages/js/navbar.js"></script>
+  <script src="/pages/js/sheetMusic.js"></script>
   <script src="/pages/js/song.js"></script>
 </body>
 </html>

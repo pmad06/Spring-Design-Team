@@ -1,6 +1,8 @@
-/* ── css/song.css  —  Catherine's lyrics + chords page styles ── */
+/* ── css/song.css  —  Catherine's lyrics + chords page ── */
 
-/* Header */
+/* ════════════════════════════════
+   HEADER
+════════════════════════════════ */
 .song-page-header {
   display: flex;
   align-items: flex-start;
@@ -22,9 +24,9 @@
   margin-bottom: 8px;
   text-decoration: none;
 }
-.song-back:hover { color: var(--accent); }
-.song-page-title  { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--text); line-height: 1.2; }
-.song-page-artist { font-size: 0.9rem; color: var(--text2); font-style: italic; margin-top: 3px; }
+.song-back:hover      { color: var(--accent); }
+.song-page-title      { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+.song-page-artist     { font-size: 0.9rem; color: var(--text2); font-style: italic; margin-top: 3px; }
 .song-key-badge {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -34,36 +36,108 @@
   color: var(--accent);
   border: 1px solid rgba(209,180,198,0.45);
 }
-.song-hint { font-size: 0.7rem; color: var(--text3); margin-top: 4px; }
 
-/* Two-column layout */
+/* ════════════════════════════════
+   VIEW TOGGLE  (Sheet ↔ Lyrics)
+════════════════════════════════ */
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg3);
+  border-radius: 24px;
+  padding: 3px;
+  border: 1px solid var(--border2);
+}
+
+.view-toggle-btn {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+.view-toggle-btn:hover {
+  color: var(--text);
+}
+.view-toggle-btn.active {
+  background: var(--bg2);
+  color: var(--teal);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ════════════════════════════════
+   TWO-COLUMN LAYOUT
+════════════════════════════════ */
 .song-layout {
   display: grid;
   grid-template-columns: 1fr 300px;
   align-items: start;
 }
 
-/* Lyrics panel */
-.lyrics-panel {
+/* ════════════════════════════════
+   LEFT PANEL  (holds both views)
+════════════════════════════════ */
+.left-panel {
   padding: 28px 36px 60px;
   border-right: 1px solid var(--border);
   overflow-y: auto;
-  max-height: calc(100vh - var(--navbar-h) - 72px);
+  max-height: calc(100vh - var(--navbar-h) - 80px);
 }
+
+/* Shared panel header styles */
 .panel-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text3);
+  margin-bottom: 6px;
+}
+.sheet-subtitle {
+  font-size: 0.78rem;
+  color: var(--text2);
+  font-style: italic;
   margin-bottom: 24px;
 }
-.song-section   { margin-bottom: 30px; }
-.section-label  { font-size: 0.72rem; font-style: italic; color: var(--text3); margin-bottom: 10px; }
-.lyric-line     { display: flex; flex-wrap: wrap; align-items: flex-end; margin-bottom: 8px; }
 
-/* The chord + word unit */
-.chord-word     { display: inline-flex; flex-direction: column; align-items: flex-start; }
+/* Each view panel fills its parent */
+.view-panel { width: 100%; }
+
+/* ════════════════════════════════
+   SHEET MUSIC VIEW
+════════════════════════════════ */
+.sheet-music-container {
+  overflow-x: auto;
+  min-width: 0;
+}
+.sheet-music-container svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.sheet-loading {
+  font-size: 0.82rem;
+  color: var(--text3);
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* ════════════════════════════════
+   LYRICS + CHORDS VIEW
+════════════════════════════════ */
+.song-section  { margin-bottom: 30px; }
+.section-label { font-size: 0.72rem; font-style: italic; color: var(--text3); margin-bottom: 10px; }
+.lyric-line    { display: flex; flex-wrap: wrap; align-items: flex-end; margin-bottom: 8px; }
+
+/* Chord + word stacked unit */
+.chord-word { display: inline-flex; flex-direction: column; align-items: flex-start; }
 .chord-name {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -78,12 +152,20 @@
   white-space: pre;
   line-height: 1.5;
 }
-.chord-name.has-chord          { color: var(--teal); cursor: pointer; }
-.chord-name.has-chord:hover    { background: var(--teal-dim); }
-.chord-name.has-chord.active   { color: #6b5a8a; background: rgba(203,196,214,0.35); }
-.lyric-word { font-family: var(--font-body); font-size: 1rem; line-height: 1.7; color: var(--text); white-space: pre; }
+.chord-name.has-chord        { color: var(--teal); cursor: pointer; }
+.chord-name.has-chord:hover  { background: var(--teal-dim); }
+.chord-name.has-chord.active { color: #6b5a8a; background: rgba(203,196,214,0.35); }
+.lyric-word {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre;
+}
 
-/* Side panel */
+/* ════════════════════════════════
+   SIDE PANEL  (YouTube + chords)
+════════════════════════════════ */
 .side-panel {
   padding: 24px 20px;
   display: flex;
@@ -92,7 +174,7 @@
   position: sticky;
   top: var(--navbar-h);
   overflow-y: auto;
-  max-height: calc(100vh - var(--navbar-h) - 72px);
+  max-height: calc(100vh - var(--navbar-h) - 80px);
 }
 
 /* YouTube */
@@ -121,7 +203,7 @@
   letter-spacing: 0.06em;
   color: var(--text2);
 }
-.chord-card-hint { font-weight: 400; color: var(--text3); }
+.chord-card-hint    { font-weight: 400; color: var(--text3); }
 .chord-display-area {
   padding: 16px 12px;
   display: flex;
@@ -136,11 +218,37 @@
 .chord-empty-icon   { font-size: 1.6rem; opacity: 0.15; }
 .chord-empty-text   { font-size: 0.75rem; color: var(--text3); text-align: center; max-width: 130px; line-height: 1.4; }
 
-/* Responsive */
+/* Chord pills */
+.chord-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
+.chord-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--teal);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.chord-pill:hover  { background: var(--teal-dim); border-color: var(--teal); }
+.chord-pill.active { background: var(--teal-dim); border-color: var(--teal); }
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
 @media (max-width: 700px) {
-  .song-layout        { grid-template-columns: 1fr; }
-  .lyrics-panel       { border-right: none; max-height: none; padding: 20px 18px 40px; }
-  .side-panel         { position: static; max-height: none; }
-  .song-page-header   { padding: 16px 18px; }
-  .song-page-title    { font-size: 1.3rem; }
+  .song-layout      { grid-template-columns: 1fr; }
+  .left-panel       { border-right: none; max-height: none; padding: 20px 18px 40px; }
+  .side-panel       { position: static; max-height: none; }
+  .song-page-header { padding: 16px 18px; }
+  .song-page-title  { font-size: 1.3rem; }
+  .view-toggle-btn  { padding: 5px 10px; font-size: 0.62rem; }
 }
