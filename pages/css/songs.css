@@ -1,0 +1,29 @@
+/* ── css/songs.css  —  song list table styles ── */
+
+.song-list-table { width: 100%; border-collapse: collapse; }
+.song-list-table thead tr { border-bottom: 1px solid var(--border2); }
+.song-list-table th {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 0 12px 12px;
+  font-weight: 500;
+}
+.song-list-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text);
+  vertical-align: middle;
+}
+.song-list-table tbody tr { cursor: pointer; transition: background 0.1s; }
+.song-list-table tbody tr:hover { background: var(--bg3); }
+.tbl-num    { color: var(--text3); font-family: var(--font-mono); font-size: 0.75rem; }
+.tbl-title  { font-family: var(--font-serif); font-weight: 500; }
+.tbl-artist { color: var(--text2); font-style: italic; }
+.tbl-key    { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); }
+.tbl-chords { font-family: var(--font-mono); font-size: 0.72rem; color: var(--teal); }
+.tbl-arrow  { color: var(--text3); }

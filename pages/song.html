@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Song — NoteByNote</title>
+  <link rel="stylesheet" href="/pages/css/global.css" />
+  <link rel="stylesheet" href="/pages/css/song.css" />
+</head>
+<body>
+
+  <!-- ── NAVBAR (Dhivya owns this) ── -->
+  <nav class="navbar">
+    <a href="/pages/index.html" class="navbar-logo">
+      <div class="navbar-logo-dot"></div>
+      NoteByNote
+    </a>
+    <ul class="navbar-links">
+      <li><a href="/pages/index.html"  class="nav-link" data-page="home">  <span class="nav-icon">♩</span><span class="nav-label">Home</span></a></li>
+      <li><a href="/pages/songs.html"  class="nav-link" data-page="songs"> <span class="nav-icon">♫</span><span class="nav-label">Songs</span></a></li>
+      <li><a href="/pages/chords.html" class="nav-link" data-page="chords"><span class="nav-icon">◈</span><span class="nav-label">Chord Dictionary</span></a></li>
+      <li><a href="/pages/about.html"  class="nav-link" data-page="about"> <span class="nav-icon">◎</span><span class="nav-label">About</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── SONG HEADER ── -->
+  <div class="song-page-header">
+    <div>
+      <a href="/pages/index.html" class="song-back">← back to search</a>
+      <h1 class="song-page-title" id="sp-title">Loading…</h1>
+      <p class="song-page-artist" id="sp-artist"></p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <span class="song-key-badge" id="sp-key"></span>
+
+      <!-- ── VIEW TOGGLE ── -->
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" id="btn-sheet" onclick="switchView('sheet')">
+          ♩ Sheet Music
+        </button>
+        <button class="view-toggle-btn" id="btn-lyrics" onclick="switchView('lyrics')">
+          ♫ Lyrics &amp; Chords
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── MAIN LAYOUT: left panel + side panel ── -->
+  <div class="song-layout">
+
+    <!-- ══ LEFT PANEL — toggles between two views ══ -->
+    <div class="left-panel">
+
+      <!-- VIEW A: Sheet Music (default, visible) -->
+      <div id="view-sheet" class="view-panel">
+        <p class="panel-eyebrow">Sheet Music</p>
+        <p class="sheet-subtitle">Notes · chords · lyrics — follow along as you play</p>
+        <div class="sheet-music-container" id="sheet-music-container">
+          <p class="sheet-loading">Rendering sheet music…</p>
+        </div>
+      </div>
+
+      <!-- VIEW B: Lyrics + Chords (hidden by default) -->
+      <div id="view-lyrics" class="view-panel" style="display:none;">
+        <p class="panel-eyebrow">Lyrics &amp; Chords</p>
+        <p class="sheet-subtitle">Tap any chord name to see its fingering</p>
+        <div id="sp-lyrics"></div>
+      </div>
+
+    </div>
+
+    <!-- ══ SIDE PANEL — always visible ══ -->
+    <div class="side-panel">
+
+      <!-- YouTube embed (Pranathi's component) -->
+      <div class="yt-wrapper" id="sp-yt-wrapper"></div>
+
+      <!-- Chord viewer -->
+      <div class="chord-card">
+        <div class="chord-card-header">
+          CHORD VIEWER
+          <span class="chord-card-hint" id="sp-chord-hint">click a chord above</span>
+        </div>
+        <div class="chord-display-area" id="sp-chord-display">
+          <div class="chord-empty-state">
+            <div class="chord-empty-icon">♩</div>
+            <p class="chord-empty-text">Tap any chord to see its fingering</p>
+          </div>
+        </div>
+        <div class="chord-pills" id="sp-chord-pills"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VexFlow CDN — must be before sheetMusic.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+
+  <script src="/pages/js/data.js"></script>
+  <script src="/pages/js/chordDiagram.js"></script>
+  <script src="/pages/js/navbar.js"></script>
+  <script src="/pages/js/sheetMusic.js"></script>
+  <script src="/pages/js/song.js"></script>
+</body>
+</html>
