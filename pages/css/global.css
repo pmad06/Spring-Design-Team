@@ -14,7 +14,7 @@
    #cbc4d6  — lavender grey (chord colour, highlights)
 */
 :root {
-  --bg:          #efe1e1;
+  --bg:          #efe1e1; /*background */
   --bg2:         #f0d2da;
   --bg3:         #e0c1c6;
   --border:      rgba(180,130,140,0.25);
@@ -47,12 +47,9 @@ html, body {
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; }
 
-/* ── Navbar ──────────────────────────────────── */
+/* ── Navbar (Dhivya) ─────────────────────────── */
 .navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 36px;
   height: var(--navbar-h);
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
@@ -61,45 +58,50 @@ button { cursor: pointer; font-family: inherit; }
   z-index: 100;
 }
 
-.navbar-logo {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.navbar-logo-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.7;
-}
-
+/* 4 sections fill the full width equally */
 .navbar-links {
   display: flex;
-  align-items: center;
-  gap: 2px;
   list-style: none;
+  width: 100%;
 }
+.navbar-links li {
+  flex: 1;
+  border-right: 1px solid var(--border);
+}
+.navbar-links li:last-child {
+  border-right: none;
+}
+
+/* each link is a column: star image on top, label below */
 .navbar-links li a {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-family: var(--font-mono);
+  height: 100%;
+  font-family: var(--font-body);
   font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
   color: var(--text2);
-  transition: color 0.15s, background 0.15s;
 }
-.navbar-links li a:hover  { color: var(--text); background: var(--bg3); }
-.navbar-links li a.active { color: var(--accent); background: var(--accent-dim); }
-.nav-icon { font-size: 0.85rem; }
+
+.nav-star {
+  width: 30px;
+  height: 30px;
+}
+
+/* star-wrap layers navbarSelect.png behind the star on active page */
+.star-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+}
+.nav-link.active .star-wrap {
+  background: url('/pages/images/navbarSelect.png') center / contain no-repeat;
+}
 
 /* ── Shared page inner wrapper ───────────────── */
 .page-inner {
