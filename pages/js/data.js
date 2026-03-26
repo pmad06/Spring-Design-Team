@@ -9,10 +9,10 @@ const SONGS = [
   // ════════════════════════════════════════════
   {
     id: "twinkle-twinkle",
-    title: "Twinkle Twinkle Little Star",
+    title: "Twinkle Twinkle Little Star (Piano)",
     artist: "Traditional",
     key: "C Major",
-    youtubeId: "yCjJyiqpAuU",
+    youtubeId: "p9tW3n6aO9Q",
     chords: ["C", "F", "G"],
     sheetMusic: {
       timeSignature: "4/4",
@@ -62,7 +62,7 @@ const SONGS = [
     title: "Die With a Smile",
     artist: "Bruno Mars & Lady Gaga",
     key: "G Major (Capo 1)",
-    youtubeId: "kPa7bsKwL-c",
+    youtubeId: "WBeD5Zx9kME",
     chords: ["G", "Em", "C", "D"],
 
     sheetMusic: {
