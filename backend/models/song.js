@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
-const songSchema = new mongoose.Schem({
+const songSchema = new mongoose.Schema({
     title: { type: String, required: true },
     artist: { type: String, required: true },
     lyrics: { type: String, default: '' },
+    chords: { type: String, default: '' },
     youtubeLink: { type: String, default: '' },
 });
 
-songSchema.index({ title: 'text', artist: 'text' });
+songSchema.index({ title: 'text', artist: 'text', lyrics: 'text', chords: 'text' });
 
 module.exports = mongoose.model('Song', songSchema);
