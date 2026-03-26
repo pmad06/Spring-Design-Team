@@ -5,6 +5,7 @@ const songSchema = new mongoose.Schema({
     artist: { type: String, required: true },
     lyrics: { type: String, default: '' },
     youtubeLink: { type: String, default: '' },
+    chords: { type: String, default: ''},
 });
 
 songSchema.index({ title: 'text', artist: 'text' });
