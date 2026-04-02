@@ -18,11 +18,11 @@ async function seedSongs() {
     return;
   }
 
-// not sure if this will work but im trying to import the data from the data.js file in the pages folder, which is where we have the songs data stored
-const songs = require('../pages/data.js');
+// Seed data lives in backend/seed/data.js
+const { SONGS } = require('./seed/data');
 
-  await Song.insertMany(songs);
-  console.log('Seeded initial songs:', songs.length);
+  await Song.insertMany(SONGS);
+  console.log('Seeded initial songs:', SONGS.length);
 }
 
 app.get('/api/songs', async (req, res) => {
