@@ -98,10 +98,10 @@ function switchView(view) {
 function selectChord(name) {
   activeChord = name;
 
-  // Update side panel hint + diagram
+  // Update side panel hint + diagram (piano view)
   document.getElementById("sp-chord-hint").textContent = "Showing " + name;
   const area = document.getElementById("sp-chord-display");
-  area.innerHTML = `<div class="chord-display-name">${name}</div>${buildChordSVG(name)}`;
+  area.innerHTML = `<div class="chord-display-name">${name}</div>${buildPianoChordSVG(name, 300)}`;
 
   // Highlight chord names in lyrics view
   document.querySelectorAll(".chord-name.has-chord").forEach(el => {

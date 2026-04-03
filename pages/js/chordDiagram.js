@@ -1,5 +1,8 @@
 // ─────────────────────────────────────────────
+<<<<<<< Updated upstream
 //  js/chordDiagram.js  —  SVG fretboard renderer
+=======
+>>>>>>> Stashed changes
 //  js/chordDiagram.js  —  Piano chord renderer
 //
 //  Shared between song.js (side panel) and chords.js (dictionary).
@@ -124,3 +127,7 @@ function buildChordSVG(chordName, width = 180) {
   return buildChordDictionarySVG(chordName, width);
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
