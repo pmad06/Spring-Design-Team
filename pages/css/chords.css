@@ -23,3 +23,10 @@
   font-weight: 600;
   color: var(--text);
 }
+
+.fingering-chart {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+}
