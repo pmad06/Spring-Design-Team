@@ -2,14 +2,20 @@
 //  js/song.js  —  Catherine's lyrics + chords page
 // ─────────────────────────────────────────────
 
+const API_BASE = 'http://localhost:3000';
+
 let activeChord = null;
 let currentView = "sheet";
 
 // ── On page load ──────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const id     = params.get("id");
-  const song   = SONGS.find(s => s.id === id);
+
+  let song;
+  try {
+    song = await fetch(`${API_BASE}/api/song/${id}`).then(r => r.ok ? r.json() : null);
+  } catch (_) { song = null; }
 
   if (!song) {
     document.getElementById("sheet-music-container").innerHTML =

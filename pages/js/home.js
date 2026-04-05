@@ -1,22 +1,24 @@
 // ─────────────────────────────────────────────
 //  js/home.js  —  Matilde's home page + search
 //
-//  Depends on:  data.js
-//  Used by:     index.html
+//  Used by:  index.html
 // ─────────────────────────────────────────────
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderSongGrid();
+const API_BASE = 'http://localhost:3000';
+
+let allSongs = [];
+
+document.addEventListener("DOMContentLoaded", async () => {
+  allSongs = await fetch(`${API_BASE}/api/songs`).then(r => r.json());
+  renderSongGrid(allSongs);
 
   // Wire up search input
   document.getElementById("home-search").addEventListener("input", doSearch);
-  document.getElementById("home-search").addEventListener("keydown", e => {
+  document.getElementById("home-search").addEventListener("keydown", async e => {
     if (e.key === "Enter") {
-      const q = e.target.value.trim().toLowerCase();
-      const first = SONGS.find(s =>
-        s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)
-      );
-      if (first) goToSong(first.id);
+      const q = e.target.value.trim();
+      const results = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}`).then(r => r.json());
+      if (results.length) goToSong(results[0]._id);
     }
   });
 
@@ -29,9 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ── Song cards grid ───────────────────────────
-function renderSongGrid() {
-  document.getElementById("home-songs-grid").innerHTML = SONGS.map(s => `
-    <div class="song-card" onclick="goToSong('${s.id}')">
+function renderSongGrid(songs) {
+  document.getElementById("home-songs-grid").innerHTML = songs.map(s => `
+    <div class="song-card" onclick="goToSong('${s._id}')">
       <div class="song-card-title">${s.title}</div>
       <div class="song-card-artist">${s.artist}</div>
       <div class="song-card-key">Key of ${s.key}</div>
@@ -40,19 +42,17 @@ function renderSongGrid() {
 }
 
 // ── Search / filter ───────────────────────────
-function doSearch() {
-  const q        = document.getElementById("home-search").value.trim().toLowerCase();
+async function doSearch() {
+  const q        = document.getElementById("home-search").value.trim();
   const dropdown = document.getElementById("search-results-dropdown");
 
   if (!q) { dropdown.classList.remove("visible"); return; }
 
-  const results = SONGS.filter(s =>
-    s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)
-  );
+  const results = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}`).then(r => r.json());
 
   dropdown.innerHTML = results.length
     ? results.map(s => `
-        <div class="search-result-item" onclick="goToSong('${s.id}')">
+        <div class="search-result-item" onclick="goToSong('${s._id}')">
           <div>
             <div class="result-title">${s.title}</div>
             <div class="result-artist">${s.artist}</div>

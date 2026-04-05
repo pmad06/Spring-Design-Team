@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const Song = require('./models/song');
 
 const app = express();
@@ -9,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const MONGO_URI = process.env.MONGO_URI;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 async function seedSongs() {
   const existing = await Song.countDocuments();
@@ -34,24 +35,7 @@ app.get('/api/songs', async (req, res) => {
   }
 });
 
-app.get('/api/search', async (req, res) => {
-  try {
-    const query = (req.query.q || req.query.query || '').trim();
-    if (!query) {
-      const all = await Song.find().limit(100).lean();
-      return res.json(all);
-    }
-
-    const results = await Song.find({ $text: { $search: query } })
-      .limit(100)
-      .lean();
-
-    res.json(results);
-  } catch (err) {
-    console.error('Search error:', err);
-    res.status(500).json({ error: 'Search failed' });
-  }
-});
+app.use('/api', require('./routes/searchSongs'));
 
 app.get('/api/song/:id', async (req, res) => {
   try {
@@ -68,10 +52,7 @@ app.use((req, res) => {
 });
 
 async function start() {
-  await mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(MONGO_URI);
   console.log('Connected to MongoDB:', MONGO_URI);
 
   await seedSongs();
