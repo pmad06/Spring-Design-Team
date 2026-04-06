@@ -6,7 +6,7 @@ const songSchema = new mongoose.Schema({
     artist: { type: String, required: true },
     key: { type: String, default: '' },
     youtubeId: { type: String, default: '' },
-    youtubeLink: { type: String, default: '' },
+    //youtubeLink: { type: String, default: '' },
     lyrics: { type: String, default: '' },
     chords: { type: [String], default: [] },
     sheetMusic: { type: mongoose.Schema.Types.Mixed, default: null },

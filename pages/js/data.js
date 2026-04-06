@@ -17,6 +17,7 @@ const SONGS = [
     sheetMusic: {
       timeSignature: "4/4",
       clef: "treble",
+      keySignature: "C",
       measures: [
         [ {key:"c/4",dur:"q",lyric:"Twin-",chord:"C"}, {key:"c/4",dur:"q",lyric:"kle"}, {key:"g/4",dur:"q",lyric:"twin-"}, {key:"g/4",dur:"q",lyric:"kle"} ],
         [ {key:"a/4",dur:"q",lyric:"lit-",chord:"F"},  {key:"a/4",dur:"q",lyric:"tle"}, {key:"g/4",dur:"h",lyric:"star,",chord:"C"} ],
@@ -62,12 +63,13 @@ const SONGS = [
     title: "Die With a Smile",
     artist: "Bruno Mars & Lady Gaga",
     key: "G Major (Capo 1)",
-    youtubeId: "WBeD5Zx9kME",
+    youtubeId: "ELC9YmxeIyc",
     chords: ["G", "Em", "C", "D"],
 
     sheetMusic: {
       timeSignature: "4/4",
       clef: "treble",
+      keySignature: "G",
       measures: [
         // Verse: "I, I just woke up from a dream"
         // Bar 1 — G
@@ -155,12 +157,14 @@ const SONGS = [
     title: "Back to Black",
     artist: "Amy Winehouse",
     key: "D Minor",
-    youtubeId: "TJAfLE39ZZ8",
+    youtubeId: "WBeD5Zx9kME",
+    youtubeParams: "?si=MYmdPq1-NB1sPGDd",
     chords: ["Dm", "F", "C", "Bb"],
 
     sheetMusic: {
       timeSignature: "4/4",
       clef: "treble",
+      keySignature: "Bb",
       measures: [
         // Verse: "He left no time to regret"
         // Bar 1 — Dm
@@ -238,6 +242,71 @@ const SONGS = [
         [{chord:"F",word:"I go back to "}],
         [{chord:"C",word:"I go back to "}],
         [{chord:"Bb",word:"I go back to "},{chord:"Dm",word:"black "}],
+      ]},
+    ],
+  },
+
+  //  Key: A Major
+  //  Chords: A, E, D, Dm
+  {
+    id: "winner-takes-it-all",
+    title: "The Winner Takes It All",
+    artist: "ABBA",
+    key: "A Major",
+    youtubeId: "9AGiShfoR_8",
+    youtubeParams: "?si=jvIBec8XaEwn8Sh7",
+    chords: ["A", "E", "D", "Dm"],
+
+    sheetMusic: {
+      timeSignature: "4/4",
+      clef: "treble",
+      keySignature: "A",
+      measures: [
+        // Verse: "I don't wanna talk about things we've gone through"
+        [ {key:"a/4",dur:"q",lyric:"I",chord:"A"},     {key:"a/4",dur:"q",lyric:"don't"}, {key:"b/4",dur:"q",lyric:"wan-"}, {key:"a/4",dur:"q",lyric:"na"} ],
+        [ {key:"g#/4",dur:"q",lyric:"talk",chord:"E"}, {key:"a/4",dur:"q",lyric:"a-"}, {key:"a/4",dur:"q",lyric:"bout"}, {key:"b/4",dur:"q",lyric:"things"} ],
+        [ {key:"a/4",dur:"q",lyric:"we've",chord:"D"}, {key:"b/4",dur:"q",lyric:"gone"}, {key:"a/4",dur:"q",lyric:"through"}, {key:"a/4",dur:"q",lyric:""} ],
+        [ {key:"a/4",dur:"h",lyric:"",chord:"A"},      {key:"a/4",dur:"h",lyric:""} ],
+
+        // "Though it's hurting me, now it's history"
+        [ {key:"a/4",dur:"q",lyric:"Though",chord:"A"}, {key:"a/4",dur:"q",lyric:"it's"}, {key:"b/4",dur:"q",lyric:"hurt-"}, {key:"a/4",dur:"q",lyric:"ing"} ],
+        [ {key:"g#/4",dur:"q",lyric:"me,",chord:"E"},   {key:"a/4",dur:"q",lyric:"now"}, {key:"a/4",dur:"q",lyric:"it's"}, {key:"b/4",dur:"q",lyric:"his-"} ],
+        [ {key:"a/4",dur:"q",lyric:"to-",chord:"D"},    {key:"a/4",dur:"q",lyric:"ry"}, {key:"a/4",dur:"q",lyric:""}, {key:"a/4",dur:"q",lyric:""} ],
+        [ {key:"a/4",dur:"h",lyric:"",chord:"Dm"},      {key:"a/4",dur:"h",lyric:""} ],
+
+        // Chorus: "I've played all my cards and that's what you've done too"
+        [ {key:"a/4",dur:"q",lyric:"I've",chord:"A"},   {key:"a/4",dur:"q",lyric:"played"}, {key:"b/4",dur:"q",lyric:"all"}, {key:"a/4",dur:"q",lyric:"my"} ],
+        [ {key:"g#/4",dur:"q",lyric:"cards",chord:"E"}, {key:"a/4",dur:"q",lyric:"and"}, {key:"a/4",dur:"q",lyric:"that's"}, {key:"b/4",dur:"q",lyric:"what"} ],
+        [ {key:"a/4",dur:"q",lyric:"you've",chord:"D"}, {key:"a/4",dur:"q",lyric:"done"}, {key:"a/4",dur:"q",lyric:"too,"}, {key:"a/4",dur:"q",lyric:""} ],
+        [ {key:"a/4",dur:"h",lyric:"",chord:"A"},       {key:"a/4",dur:"h",lyric:""} ],
+
+        // "Nothing more to say, no more ace to play"
+        [ {key:"a/4",dur:"q",lyric:"Noth-",chord:"A"}, {key:"a/4",dur:"q",lyric:"ing"}, {key:"b/4",dur:"q",lyric:"more"}, {key:"a/4",dur:"q",lyric:"to"} ],
+        [ {key:"g#/4",dur:"q",lyric:"say,",chord:"E"},  {key:"a/4",dur:"q",lyric:"no"}, {key:"a/4",dur:"q",lyric:"more"}, {key:"b/4",dur:"q",lyric:"ace"} ],
+        [ {key:"a/4",dur:"q",lyric:"to",chord:"D"},     {key:"a/4",dur:"q",lyric:"play,"}, {key:"a/4",dur:"q",lyric:""}, {key:"a/4",dur:"q",lyric:""} ],
+        [ {key:"a/4",dur:"h",lyric:"",chord:"A"},       {key:"a/4",dur:"h",lyric:""} ],
+
+        // "The winner takes it all"
+        [ {key:"a/4",dur:"q",lyric:"The",chord:"D"},    {key:"a/4",dur:"q",lyric:"win-"}, {key:"b/4",dur:"q",lyric:"ner"}, {key:"a/4",dur:"q",lyric:"takes"} ],
+        [ {key:"g#/4",dur:"q",lyric:"it",chord:"A"},    {key:"a/4",dur:"q",lyric:"all,"}, {key:"a/4",dur:"q",lyric:""}, {key:"a/4",dur:"q",lyric:""} ],
+        [ {key:"a/4",dur:"h",lyric:"",chord:"E"},       {key:"a/4",dur:"h",lyric:""} ],
+      ],
+    },
+
+    sections: [
+      { label: "Verse 1", lines: [
+        [{chord:"A",word:"I don't wan-na "},{chord:"E",word:"talk a-bout things "},{chord:"D",word:"we've gone "},{chord:"A",word:"through "}],
+        [{chord:"A",word:"Though it's hurt-ing "},{chord:"E",word:"me, now it's "},{chord:"D",word:"his-to-"},{chord:"Dm",word:"ry "}],
+      ]},
+      { label: "Verse 2", lines: [
+        [{chord:"A",word:"I've played all my "},{chord:"E",word:"cards and that's "},{chord:"D",word:"what you've "},{chord:"A",word:"done too "}],
+        [{chord:"A",word:"Noth-ing more to "},{chord:"E",word:"say, no more "},{chord:"D",word:"ace to play, "}],
+      ]},
+      { label: "Chorus", lines: [
+        [{chord:"D",word:"The win-ner takes it "},{chord:"A",word:"all, "}],
+        [{chord:"E",word:"The los-er has to "},{chord:"A",word:"fall "}],
+        [{chord:"A",word:"It's sim-ple and it's "},{chord:"E",word:"plain, "}],
+        [{chord:"D",word:"Why should I com-"},{chord:"A",word:"plain? "}],
       ]},
     ],
   },

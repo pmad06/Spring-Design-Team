@@ -50,9 +50,10 @@ function renderSongPage(song) {
   document.getElementById("sp-key").textContent    = "Key of " + song.key;
   document.title = song.title + " — NoteByNote";
 
+  const youtubeParams = song.youtubeParams ? song.youtubeParams : "";
   document.getElementById("sp-yt-wrapper").innerHTML =
     `<iframe
-      src="https://www.youtube.com/embed/${song.youtubeId}"
+      src="https://www.youtube.com/embed/${song.youtubeId}${youtubeParams}"
       title="${song.title} video"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>

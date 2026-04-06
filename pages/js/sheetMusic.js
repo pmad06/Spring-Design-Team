@@ -31,15 +31,16 @@ function renderSheetMusic(song) {
     const { Renderer, Stave, StaveNote, Voice, Formatter, Annotation } = Vex.Flow;
 
     // ── Layout ────────────────────────────────────
-    const BARS_PER_ROW = 4;
-    const BAR_WIDTH    = 200;
-    const ROW_HEIGHT   = 158;
-    const STAVE_TOP    = 42;
-    const MARGIN_L     = 10;
-    const MARGIN_T     = 8;
+    const BARS_PER_ROW   = 4;
+    const BAR_WIDTH      = 200;
+    const FIRST_BAR_EXTRA = 60;
+    const ROW_HEIGHT     = 158;
+    const STAVE_TOP      = 42;
+    const MARGIN_L       = 10;
+    const MARGIN_T       = 8;
 
     const totalRows = Math.ceil(measures.length / BARS_PER_ROW);
-    const W = MARGIN_L + BAR_WIDTH * BARS_PER_ROW + 10;
+    const W = MARGIN_L + BAR_WIDTH * BARS_PER_ROW + FIRST_BAR_EXTRA + 10;
     const H = MARGIN_T + ROW_HEIGHT * totalRows + 20;
 
     const renderer = new Renderer(container, Renderer.Backends.SVG);
@@ -76,12 +77,18 @@ function renderSheetMusic(song) {
       const builtBars = [];
 
       rowMeasures.forEach((bar, col) => {
-        const staveX  = MARGIN_L + col * BAR_WIDTH;
-        const isFirst = col === 0;
+        const isFirst = row === 0 && col === 0;
+        const staveWidth = isFirst ? BAR_WIDTH + FIRST_BAR_EXTRA : BAR_WIDTH;
+        const staveX = MARGIN_L + col * BAR_WIDTH + (row === 0 && col > 0 ? FIRST_BAR_EXTRA : 0);
 
-        const stave = new Stave(staveX, staveY, BAR_WIDTH);
-        if (row === 0 && isFirst) stave.addClef(clef).addTimeSignature(timeSignature);
-        else if (isFirst)         stave.addClef(clef);
+        const stave = new Stave(staveX, staveY, staveWidth);
+        if (isFirst) {
+          stave.addClef(clef);
+          if (song.sheetMusic.keySignature) stave.addKeySignature(song.sheetMusic.keySignature);
+          stave.addTimeSignature(timeSignature);
+        } else if (col === 0) {
+          stave.addClef(clef);
+        }
         stave.setContext(ctx).draw();
 
         const notes = bar.map(n => {
@@ -100,7 +107,7 @@ function renderSheetMusic(song) {
 
         new Formatter()
           .joinVoices([voice])
-          .format([voice], stave.getWidth() - (isFirst ? 62 : 28));
+          .formatToStave([voice], stave);
 
         voice.draw(ctx, stave);
         builtBars.push({ notes, bar });
