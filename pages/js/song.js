@@ -98,10 +98,14 @@ function switchView(view) {
 function selectChord(name) {
   activeChord = name;
 
-  // Update side panel hint + diagram
+  // Update side panel hint + diagram (piano view)
   document.getElementById("sp-chord-hint").textContent = "Showing " + name;
   const area = document.getElementById("sp-chord-display");
-  area.innerHTML = `<div class="chord-display-name">${name}</div>${buildChordSVG(name)}`;
+  const usableWidth = Math.max(area.clientWidth - 10, 240);
+  area.innerHTML = `
+    <div class="chord-display-name">${name}</div>
+    <div class="chord-svg-wrapper">${buildPianoChordSVG(name, usableWidth)}</div>
+  `;
 
   // Highlight chord names in lyrics view
   document.querySelectorAll(".chord-name.has-chord").forEach(el => {
@@ -119,3 +123,11 @@ function selectChord(name) {
     syncSheetChordHighlight(name);
   }
 }
+
+// Re-render chord diagram on window resize, preserving selected chord.
+function updateChordViewerForResize() {
+  if (!activeChord) return;
+  selectChord(activeChord);
+}
+
+window.addEventListener('resize', updateChordViewerForResize);

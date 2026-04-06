@@ -242,6 +242,7 @@ const CHORD_DIAGRAMS = {
   Cadd9: { fingers:[[3,2],[4,3],[5,3]], open:[1,2], mute:[6], barre:null },
   Dsus4: { fingers:[[1,3],[2,3],[3,2]], open:[4], mute:[5,6], barre:null },
   A7:    { fingers:[[2,2],[4,2]], open:[1,3,5], mute:[6], barre:null },
+  
 };
 
 module.exports = { SONGS, CHORD_DIAGRAMS };

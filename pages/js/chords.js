@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   grid.innerHTML = Object.entries(CHORD_DIAGRAMS).map(([name, _]) => `
     <div class="dict-card">
       <div class="dict-card-name">${name}</div>
-      ${buildChordSVG(name, 16, 18)}
+      ${buildChordSVG(name, 180)}
     </div>
   `).join("");
 });
